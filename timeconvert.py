@@ -149,10 +149,12 @@ if __name__ == "__main__":
   print "Converted to time zone Pacific/Auckland: %s" % reference_auckland
   print ""
   
-  for i in range(0, 10):
-    timestamp = t.convert_to_timestamp(i, test_datetime)
-    datetime_back = t.convert_to_datetime(i, timestamp)
-    name, precision = t.TIMESTAMP_INFO[i]
+  timestamp_formats = t.TIMESTAMP_INFO.keys()
+  timestamp_formats.sort()
+  for tf in timestamp_formats:
+    timestamp = t.convert_to_timestamp(tf, test_datetime)
+    datetime_back = t.convert_to_datetime(tf, timestamp)
+    name, precision = t.TIMESTAMP_INFO[tf]
     print name
     print "Precision: %s" % precision
     print "Reference time: %s" % test_datetime
